@@ -1,0 +1,89 @@
+### Получить список постов 
+GET http://localhost:8000/api/posts/
+Accept: application/json
+
+
+### Создать новый пост 
+POST http://localhost:8000/api/posts/
+Content-Type: application/json
+Authorization: Token 
+
+{
+    "text": "Пример поста",
+    "location_name": "Екатеринбург"
+}
+
+
+### Получить детали поста по ID 
+GET http://localhost:8000/api/posts/1/ 
+
+
+### Обновить пост полностью 
+PUT http://localhost:8000/api/posts/1/ 
+Content-Type: application/json
+Authorization: Token 
+
+{
+  "text": "Обновлённый текст поста",
+  "location_name": "Санкт-Петербург"
+}
+
+
+### Частичное обновление поста 
+PATCH http://localhost:8000/api/posts/2/ 
+Content-Type: application/json
+Authorization: Token 
+
+{
+  "text": "Частично обновлённый текст"
+}
+
+
+### Удалить пост 
+DELETE http://localhost:8000/api/posts/2/ 
+Authorization: Token 
+
+
+### Получить список изображений поста 
+GET http://localhost:8000/api/posts/1/images/ 
+Accept: application/json
+
+
+### Добавить изображение к посту 
+POST http://localhost:8000/api/posts/1/images/ 
+Authorization: Token a2b382bfbbac845b6bad3a7738e8ea447de4b4b5
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="Design.png"
+Content-Type: image/jpeg
+
+# Путь к файлу
+< C:\Users\User\Desktop\Design.png   
+--WebAppBoundary--
+
+
+### Удалить изображение поста 
+DELETE http://localhost:8000/api/posts/1/images/1/
+Authorization: Token 
+
+
+### Поставить лайк посту 
+POST http://localhost:8000/api/posts/1/likes/1/
+Authorization: Token 
+Content-Type: application/json
+
+
+### Добавить комментарий к посту 
+POST http://localhost:8000/api/posts/6/comments/ 
+Authorization: Token 
+Content-Type: application/json
+
+{
+  "text": "Отличный пост!"
+}
+
+
+### Получить список комментариев поста 
+GET http://localhost:8000/api/posts/1/comments/ 
+Accept: application/json

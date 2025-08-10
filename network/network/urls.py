@@ -19,10 +19,11 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 
-from ShotLine.views import CommentDetail, CommentList, LikeDetail, LikeList, PostDetail, PostImageDetail, PostImageList, PostList
+from ShotLine.views import CommentDetail, CommentList, LikeDetail, LikeList, PostDetail, PostImageDetail, PostImageList, PostList, start
 
 
 urlpatterns = [
+    path('', start),
     path('admin/', admin.site.urls),
 
     # Посты

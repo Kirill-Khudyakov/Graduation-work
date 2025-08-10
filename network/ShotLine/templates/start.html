@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShotLine - Добро пожаловать!</title>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4895ef;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            flex: 1;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .admin-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-bottom: 2px dotted var(--primary-color);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--dark-color);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Добро пожаловать в ShotLine!</h1>
+            <p class="tagline">Ваше пространство для творчества и вдохновения</p>
+            <a href="/admin/" class="cta-button">Перейти в админ-панель</a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section>
+            <h2 style="text-align: center; color: var(--primary-color);">Почему ShotLine?</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>📷 Публикуйте фотографии</h3>
+                    <p>Делитесь своими лучшими моментами с сообществом. Поддерживаются все популярные форматы изображений.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📍 Отмечайте места</h3>
+                    <p>Покажите, где были сделаны ваши фотографии. Автоматическое определение координат по названию места.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>💬 Общайтесь</h3>
+                    <p>Комментируйте посты, ставьте лайки и находите единомышленников.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section style="text-align: center; margin: 4rem 0;">
+            <h2 style="color: var(--primary-color);">Готовы начать?</h2>
+            <p>Присоединяйтесь к сообществу фотографов и любителей красивых моментов!</p>
+            <div style="margin-top: 2rem;">
+                <a href="/admin/" class="cta-button">Перейти в админ-панель</a>
+                <br>
+                <a href="/api/posts/" class="admin-link">Или просмотреть публикации через API</a>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 ShotLine. Все права защищены.</p>
+            <p>С любовью к фотографии и разработке</p>
+        </div>
+    </footer>
+</body>
+</html>

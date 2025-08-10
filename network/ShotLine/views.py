@@ -6,6 +6,12 @@ from .serializers import CommentSerializer, LikeSerializer, PostImageSerializer,
 from .models import Post, PostImage, Like, Comment
 from rest_framework.pagination import PageNumberPagination
 
+from django.shortcuts import render
+
+
+def start(request):
+    return render(request, 'start.html')
+
 
 class StandardResultsSetPagination(PageNumberPagination):
     """
@@ -50,6 +56,7 @@ class PostList(generics.ListCreateAPIView):
     """
     Представление для вывода списка постов и создания нового поста.
     Поддерживает поиск по тексту, автору и местоположению, а также сортировку.
+    При создании требуется минимум одно изображение (валидация в сериализаторе).
     """
     queryset = Post.objects.all().order_by('-created_at')
     serializer_class = PostSerializer

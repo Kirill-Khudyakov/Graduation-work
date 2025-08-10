@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 from .models import Comment, Like, Post, PostImage
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderUnavailable
@@ -118,7 +119,23 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = ['id', 'author', 'comments', 'text', 'created_at', 'location_name',
                   'likes_count', 'images', 'image', 'uploaded_images', 'location']
-        # read_only_fields = ['latitude', 'longitude', 'location']
+        
+
+    def validate(self, data):
+        """
+        Валидация наличия хотя бы одного изображения при создании поста
+        """
+        request = self.context.get('request')
+        
+        # Проверяем, есть ли изображения в запросе
+        has_images = (
+            data.get('uploaded_images') or 
+            data.get('image') or 
+            (request and request.FILES.getlist('images'))
+        )
+        if self.instance is None and not has_images:
+            raise ValidationError("К посту должно быть прикреплено хотя бы одно изображение")
+        return data
 
     def get_likes_count(self, obj):
         return obj.likes.count()
@@ -136,6 +153,12 @@ class PostSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         request = self.context.get('request')
+
+        # Проверяем наличие изображений перед созданием поста
+        if not (validated_data.get('uploaded_images') or 
+                validated_data.get('image') or 
+                (request and request.FILES.getlist('images'))):
+            raise ValidationError("К посту должно быть прикреплено хотя бы одно изображение")
 
         location_name = validated_data.pop('location_name', None)
         if location_name:
@@ -155,6 +178,10 @@ class PostSerializer(serializers.ModelSerializer):
 
         for img in uploaded_images:
             PostImage.objects.create(post=post, image=img)
+
+        image = validated_data.get('image')
+        if image:
+            PostImage.objects.create(post=post, image=image)
 
         return post
 

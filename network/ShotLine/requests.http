@@ -40,7 +40,7 @@ Authorization: Token
 
 
 ### Удалить пост 
-DELETE http://localhost:8000/api/posts/2/ 
+DELETE http://localhost:8000/api/posts/4/ 
 Authorization: Token 
 
 
@@ -51,7 +51,7 @@ Accept: application/json
 
 ### Добавить изображение к посту 
 POST http://localhost:8000/api/posts/1/images/ 
-Authorization: Token a2b382bfbbac845b6bad3a7738e8ea447de4b4b5
+Authorization: Token 
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
@@ -63,27 +63,3 @@ Content-Type: image/jpeg
 --WebAppBoundary--
 
 
-### Удалить изображение поста 
-DELETE http://localhost:8000/api/posts/1/images/1/
-Authorization: Token 
-
-
-### Поставить лайк посту 
-POST http://localhost:8000/api/posts/1/likes/1/
-Authorization: Token 
-Content-Type: application/json
-
-
-### Добавить комментарий к посту 
-POST http://localhost:8000/api/posts/6/comments/ 
-Authorization: Token 
-Content-Type: application/json
-
-{
-  "text": "Отличный пост!"
-}
-
-
-### Получить список комментариев поста 
-GET http://localhost:8000/api/posts/1/comments/ 
-Accept: application/json
